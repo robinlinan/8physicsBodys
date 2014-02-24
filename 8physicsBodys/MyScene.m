@@ -8,43 +8,161 @@
 
 #import "MyScene.h"
 
+@interface MyScene()
+@property SKSpriteNode* mySquare1;
+@property SKSpriteNode* mySquare2;
+@property SKSpriteNode* mySquare3;
+@property SKSpriteNode* mySquare4;
+@property SKSpriteNode* mySquare5;
+@property SKSpriteNode* mySquare6;
+@property SKSpriteNode* mySquare7;
+@property SKSpriteNode* mySquare8;
+@property SKSpriteNode* myShelf;
+@property SKPhysicsJoint* myRopeJoint1;
+@property SKPhysicsJoint* myRopeJoint2;
+@property SKPhysicsJoint* myRopeJoint3;
+@property SKPhysicsJoint* myRopeJoint4;
+@property SKPhysicsJoint* myRopeJoint5;
+@property SKPhysicsJoint* myRopeJoint6;
+@property SKPhysicsJoint* myRopeJoint7;
+
+
+@end
+
+
 @implementation MyScene
+
+-(void)activateJointRope {
+    _myRopeJoint1 = [SKPhysicsJointFixed jointWithBodyA:_mySquare1.physicsBody bodyB:_mySquare2.physicsBody anchor:_mySquare2.position];
+    _myRopeJoint2 = [SKPhysicsJointLimit jointWithBodyA:_mySquare2.physicsBody bodyB:_mySquare3.physicsBody anchorA:_mySquare2.position anchorB:_mySquare3.position];
+    _myRopeJoint3 = [SKPhysicsJointLimit jointWithBodyA:_mySquare3.physicsBody bodyB:_mySquare4.physicsBody anchorA:_mySquare3.position anchorB:_mySquare4.position];
+    _myRopeJoint4 = [SKPhysicsJointLimit jointWithBodyA:_mySquare4.physicsBody bodyB:_mySquare5.physicsBody anchorA:_mySquare4.position anchorB:_mySquare5.position];
+    _myRopeJoint5 = [SKPhysicsJointLimit jointWithBodyA:_mySquare5.physicsBody bodyB:_mySquare6.physicsBody anchorA:_mySquare5.position anchorB:_mySquare6.position];
+    _myRopeJoint6 = [SKPhysicsJointLimit jointWithBodyA:_mySquare6.physicsBody bodyB:_mySquare7.physicsBody anchorA:_mySquare6.position anchorB:_mySquare7.position];
+    _myRopeJoint7 = [SKPhysicsJointSpring jointWithBodyA:_mySquare7.physicsBody bodyB:_mySquare8.physicsBody anchorA:_mySquare7.position anchorB:_mySquare8.position];
+    
+    
+    [self.physicsWorld addJoint:_myRopeJoint1];
+    [self.physicsWorld addJoint:_myRopeJoint2];
+    [self.physicsWorld addJoint:_myRopeJoint3];
+    [self.physicsWorld addJoint:_myRopeJoint4];
+    [self.physicsWorld addJoint:_myRopeJoint5];
+    [self.physicsWorld addJoint:_myRopeJoint6];
+    [self.physicsWorld addJoint:_myRopeJoint7];
+    
+    
+}
+
+
+-(void)spawnSquares {
+    _mySquare1 = [[SKSpriteNode alloc]initWithColor:[SKColor greenColor] size:CGSizeMake(50, 50)];
+    _mySquare2 = [[SKSpriteNode alloc]initWithColor:[SKColor blackColor] size:CGSizeMake(40, 40)];
+    _mySquare3 = [[SKSpriteNode alloc]initWithColor:[SKColor greenColor] size:CGSizeMake(40, 40)];
+    _mySquare4 = [[SKSpriteNode alloc]initWithColor:[SKColor blackColor] size:CGSizeMake(40, 40)];
+    _mySquare5 = [[SKSpriteNode alloc]initWithColor:[SKColor greenColor] size:CGSizeMake(40, 40)];
+    _mySquare6 = [[SKSpriteNode alloc]initWithColor:[SKColor blackColor] size:CGSizeMake(30, 30)];
+    _mySquare7 = [[SKSpriteNode alloc]initWithColor:[SKColor greenColor] size:CGSizeMake(20, 20)];
+    _mySquare8 = [[SKSpriteNode alloc]initWithColor:[SKColor blackColor] size:CGSizeMake(10, 10)];
+    
+    
+    [_mySquare1 setPosition:CGPointMake(self.size.width/1.5, 400)];
+    [_mySquare2 setPosition:CGPointMake(self.size.width/1.5, 340)];
+    [_mySquare3 setPosition:CGPointMake(self.size.width/1.5, 300)];
+    [_mySquare4 setPosition:CGPointMake(self.size.width/1.5, 340)];
+    [_mySquare5 setPosition:CGPointMake(self.size.width/1.5, 320)];
+    [_mySquare6 setPosition:CGPointMake(self.size.width/1.5, 300)];
+    [_mySquare7 setPosition:CGPointMake(self.size.width/1.5, 280)];
+    [_mySquare8 setPosition:CGPointMake(self.size.width/1.5, 260)];
+    
+    
+    _mySquare1.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare1.size];
+    _mySquare2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare2.size];
+    _mySquare3.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare3.size];
+    _mySquare4.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare4.size];
+    _mySquare5.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare5.size];
+    _mySquare6.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare6.size];
+    _mySquare7.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare7.size];
+    _mySquare8.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_mySquare8.size];
+    
+    
+    [_mySquare1.physicsBody setRestitution:0.5];
+    [_mySquare2.physicsBody setRestitution:0.5];
+    [_mySquare3.physicsBody setRestitution:0.5];
+    [_mySquare4.physicsBody setRestitution:0.5];
+    [_mySquare5.physicsBody setRestitution:0.5];
+    [_mySquare6.physicsBody setRestitution:0.5];
+    [_mySquare7.physicsBody setRestitution:0.5];
+    [_mySquare8.physicsBody setRestitution:0.5];
+    
+    
+    [self addChild:_mySquare1];
+    [self addChild:_mySquare2];
+    [self addChild:_mySquare3];
+    [self addChild:_mySquare4];
+    [self addChild:_mySquare5];
+    [self addChild:_mySquare6];
+    [self addChild:_mySquare7];
+    [self addChild:_mySquare8];
+    
+}
+
+
+-(void)makeShelf {
+    _myShelf = [[SKSpriteNode alloc]initWithColor:[SKColor grayColor] size:CGSizeMake(100, 20)];
+    _myShelf.position = CGPointMake(self.size.width/2.5, self.size.height/2);
+    _myShelf.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_myShelf.size];
+    [_myShelf.physicsBody setDynamic:NO];
+    
+    [self addChild:_myShelf];
+}
+
+
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        self.backgroundColor = [SKColor whiteColor];
+        //self.physicsWorld.gravity = CGVectorMake(0, 0);
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.scaleMode = SKSceneScaleModeAspectFit;
+        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+        [self.physicsBody setRestitution:1.0];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+        [self spawnSquares];
+        [self activateJointRope];
+        [self makeShelf];
     }
     return self;
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+        [_mySquare1 setPosition:location];
     }
 }
+
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        [_mySquare1 setPosition:location];
+    }
+}
+
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+
+}
+
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+
+}
+
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
